@@ -1,10 +1,10 @@
 const gulp = require('gulp');
 const htmlmin = require('gulp-htmlmin');
-const uglify = require('gulp-uglify');
+// const uglify = require('gulp-uglify');
 const cleanCSS = require('gulp-clean-css');
-const brotli = require('gulp-brotli');
+const zopfli = require('gulp-zopfli');
 
-gulp.task('default', ['htmlmin', 'cssmin', 'jsmin', 'assets']);
+gulp.task('default', ['htmlmin', 'cssmin', 'jsmin', 'assets', 'compress']);
 
 gulp.task('htmlmin', () => {
   return gulp.src('./src/index.html')
@@ -30,12 +30,12 @@ gulp.task('compress', () => {
     './docs/scripts.js',
     './docs/styles.css'
   ])
-    .pipe(brotli.compress())
+    .pipe(zopfli())
     .pipe(gulp.dest('./docs'));
 });
 
 gulp.task('assets', () => {
   return gulp.src('./assets/*')
-    .pipe(brotli.compress())
+    .pipe(zopfli())
     .pipe(gulp.dest('./docs/assets'))
 });
