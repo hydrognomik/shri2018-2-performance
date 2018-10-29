@@ -36,6 +36,7 @@ gulp.task('compress', () => {
 
 gulp.task('assets', () => {
   return gulp.src('./assets/*')
+    .pipe(gulp.dest('./docs/assets'))
     .pipe(zopfli())
     .pipe(gulp.dest('./docs/assets'))
 });
